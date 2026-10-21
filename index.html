@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="DCF-3DGS: Distractor-Aware COLMAP-Free 3D Gaussian Splatting — WACV 2027">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="3D Gaussian Splatting">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>DCF-3DGS: Distractor-Aware COLMAP-Free 3D Gaussian Splatting | WACV 2027</title>
+  
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+  rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+</head>
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">
+              <span class="method-name">DCF-3DGS</span>
+              <span class="paper-title">Distractor-Aware COLMAP-Free 3D Gaussian Splatting</span>
+            </h1>
+            <div class="is-size-4">WACV 2027</div>
+            <div class="is-size-5 publication-authors">
+              <!-- Paper authors -->
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/namtae-kim-a9254129a" target="_blank" rel="noopener noreferrer">Namtae Kim</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://www.haebeom.com/" target="_blank" rel="noopener noreferrer">Haebeom Jung</a><sup>1</sup>,</span>
+              <span class="author-block">
+                <a href="https://jaesik.info/" target="_blank" rel="noopener noreferrer">Jaesik Park</a><sup>1</sup>
+              </span>
+              
+                  </div>
+                
+                  <div class="is-size-5 publication-authors">
+                    <span class="author-block"><sup>1</sup>Seoul National University, Republic of Korea</span>
+                  </div>
+
+                  <div class="column has-text-centered">
+                    <div class="publication-links">
+                      <!-- Replace placeholder hrefs when the paper and arXiv URLs are available. -->
+                      <span class="link-block">
+                        <a href="#" title="Paper link will be added" class="external-link button is-normal is-rounded is-dark">
+                          <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                          <span>Paper</span>
+                        </a>
+                      </span>
+                      <span class="link-block">
+                        <a href="#" title="arXiv link will be added" class="external-link button is-normal is-rounded is-dark">
+                          <span class="icon"><i class="ai ai-arxiv"></i></span>
+                          <span>arXiv</span>
+                        </a>
+                      </span>
+
+                      <span class="link-block">
+                        <button type="button" class="external-link button is-normal is-rounded is-dark" disabled aria-disabled="true" title="Code link will be added">
+                          <span class="icon"><i class="fab fa-github"></i></span>
+                          <span>Code</span>
+                        </button>
+                      </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser figure -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/teaser.png" alt="DCF-3DGS teaser: unordered input images are used to reconstruct a Gaussian scene and camera poses, with predicted masks and rendered views for dynamic distractors." width="100%">
+    </div>
+  </div>
+</section>
+<!-- End teaser figure -->
+
+<!-- Paper abstract -->
+<section class="section hero ">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Pose-free 3D Gaussian Splatting (3DGS) has demonstrated remarkable potential in reconstructing high-fidelity 3D scenes from unposed images. However, current frameworks degrade severely in real-world environments with dynamic distractors, as these transient elements violate the strict photometric consistency required for joint pose-scene optimization and often trap the model in suboptimal local minima.
+          </p>
+          <p>
+            We propose a novel framework that mitigates this ambiguity using a dual coarse-to-fine curriculum. First, we introduce a coarse-to-fine anchor-growing strategy, starting optimization with a sparse, low-frequency anchor grid to stabilize initial pose alignment and geometry. Second, we present a DINOv2-guided uncertainty-aware masking module to dynamically isolate transient objects.
+          </p>
+          <p>
+            The masking module is controlled by a coarse-to-fine uncertainty regularization schedule that initially enforces static-scene assumptions to stabilize poses before progressively allowing dynamic masking. Experiments show that our method reduces pose error among the compared methods in cluttered, unordered captures, while maintaining competitive Novel View Synthesis quality.
+          </p>
+        </div>
+        <figure class="method-overview">
+          <img src="static/images/pipeline.png" class="img-responsive" alt="Overview of DCF-3DGS, showing coarse pose initialization and outlier filtering, coarse-to-fine anchor growth, DINOv2-guided uncertainty-aware optimization, and camera relocalization.">
+          <figcaption class="content has-text-grey">
+            <strong>Overall pipeline.</strong> From unordered images, we extract a coarse structure and filter unreliable camera poses. The resulting geometry initializes anchor Gaussians that progressively increase in resolution. A DINO-guided MLP masks dynamic distractors under a coarse-to-fine regularization schedule, enabling robust joint pose-scene optimization. Finally, outlier cameras are relocalized using the optimized scene.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video comparisons -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Video Comparisons</h2>
+    <div class="video-comparison-list">
+      <article class="video-comparison-row">
+        <h3 class="title is-4">Mountain</h3>
+        <div id="comparison-mountain" class="bal-container-big" style="--wipe-position:50%">
+          <div class="bal-after">
+            <video autoplay muted loop playsinline preload="metadata"><source src="static/videos/mountain_ours.mp4" type="video/mp4"></video>
+            <div class="bal-afterPosition afterLabel">DCF-3DGS</div>
+          </div>
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <video autoplay muted loop playsinline preload="metadata"><source src="static/videos/mountain_t3dgs.mp4" type="video/mp4"></video>
+            </div>
+            <div class="bal-beforePosition beforeLabel">T-3DGS</div>
+          </div>
+          <div class="bal-handle"><span class="handle-left-arrow"></span><span class="handle-right-arrow"></span></div>
+        </div>
+      </article>
+      <article class="video-comparison-row">
+        <h3 class="title is-4">Patio High</h3>
+        <div id="comparison-patio-high" class="bal-container-big" style="--wipe-position:50%">
+          <div class="bal-after">
+            <video autoplay muted loop playsinline preload="metadata"><source src="static/videos/patio_high_ours.mp4" type="video/mp4"></video>
+            <div class="bal-afterPosition afterLabel">DCF-3DGS</div>
+          </div>
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <video autoplay muted loop playsinline preload="metadata"><source src="static/videos/patio_high_t3dgs.mp4" type="video/mp4"></video>
+            </div>
+            <div class="bal-beforePosition beforeLabel">T-3DGS</div>
+          </div>
+          <div class="bal-handle"><span class="handle-left-arrow"></span><span class="handle-right-arrow"></span></div>
+        </div>
+      </article>
+      <article class="video-comparison-row">
+        <h3 class="title is-4">Spot</h3>
+        <div id="comparison-spot" class="bal-container-big" style="--wipe-position:50%">
+          <div class="bal-after">
+            <video autoplay muted loop playsinline preload="metadata"><source src="static/videos/spot_ours.mp4" type="video/mp4"></video>
+            <div class="bal-afterPosition afterLabel">DCF-3DGS</div>
+          </div>
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <video autoplay muted loop playsinline preload="metadata"><source src="static/videos/spot_t3dgs.mp4" type="video/mp4"></video>
+            </div>
+            <div class="bal-beforePosition beforeLabel">T-3DGS</div>
+          </div>
+          <div class="bal-handle"><span class="handle-left-arrow"></span><span class="handle-right-arrow"></span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Image comparisons -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Image Comparisons</h2>
+    <div class="image-comparison-grid">
+      <article class="video-comparison-row">
+        <h3 class="title is-4">Fountain</h3>
+        <div id="comparison-fountain-image" class="bal-container-big image-comparison" style="--wipe-position:50%;">
+          <div class="bal-after">
+            <img src="static/images/fountain_ours.png" alt="DCF-3DGS reconstruction of the Fountain scene">
+            <div class="bal-afterPosition afterLabel">DCF-3DGS</div>
+          </div>
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <img src="static/images/fountain_t3dgs.png" alt="T-3DGS reconstruction of the Fountain scene">
+            </div>
+            <div class="bal-beforePosition beforeLabel">T-3DGS</div>
+          </div>
+          <div class="bal-handle"><span class="handle-left-arrow"></span><span class="handle-right-arrow"></span></div>
+        </div>
+      </article>
+      <article class="video-comparison-row">
+        <h3 class="title is-4">Patio</h3>
+        <div id="comparison-patio-image" class="bal-container-big image-comparison" style="--wipe-position:50%;">
+          <div class="bal-after">
+            <img src="static/images/patio_ours.png" alt="DCF-3DGS reconstruction of the Patio scene">
+            <div class="bal-afterPosition afterLabel">DCF-3DGS</div>
+          </div>
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <img src="static/images/patio_t3dgs.png" alt="T-3DGS reconstruction of the Patio scene">
+            </div>
+            <div class="bal-beforePosition beforeLabel">T-3DGS</div>
+          </div>
+          <div class="bal-handle"><span class="handle-left-arrow"></span><span class="handle-right-arrow"></span></div>
+        </div>
+      </article>
+      <article class="video-comparison-row">
+        <h3 class="title is-4">Patio High</h3>
+        <div id="comparison-patio-high-image" class="bal-container-big image-comparison" style="--wipe-position:50%;">
+          <div class="bal-after">
+            <img src="static/images/patiohigh_ours.png" alt="DCF-3DGS reconstruction of the Patio High scene">
+            <div class="bal-afterPosition afterLabel">DCF-3DGS</div>
+          </div>
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <img src="static/images/patiohigh_asymgs.png" alt="AsymGS reconstruction of the Patio High scene">
+            </div>
+            <div class="bal-beforePosition beforeLabel">AsymGS</div>
+          </div>
+          <div class="bal-handle"><span class="handle-left-arrow"></span><span class="handle-right-arrow"></span></div>
+        </div>
+      </article>
+      <article class="video-comparison-row">
+        <h3 class="title is-4">Spot</h3>
+        <div id="comparison-spot-image" class="bal-container-big image-comparison" style="--wipe-position:50%;">
+          <div class="bal-after">
+            <img src="static/images/spot_ours.png" alt="DCF-3DGS reconstruction of the Spot scene">
+            <div class="bal-afterPosition afterLabel">DCF-3DGS</div>
+          </div>
+          <div class="bal-before">
+            <div class="bal-before-inset">
+              <img src="static/images/spot_asymgs.png" alt="AsymGS reconstruction of the Spot scene">
+            </div>
+            <div class="bal-beforePosition beforeLabel">AsymGS</div>
+          </div>
+          <div class="bal-handle"><span class="handle-left-arrow"></span><span class="handle-right-arrow"></span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>
+@inproceedings{Kim_DCF3DGS_2027,
+  Title={Distractor-Aware COLMAP-Free 3D Gaussian Splatting},
+  Author={Namtae Kim and Haebeom Jung and Jaesik Park},
+  Booktitle={Proceedings of the Winter Conf. on Applications of Computer Vision (WACV)},
+  Year={2027}
+}
+      </code></pre>
+    </div>
+</section>
+<!--End BibTex citation -->
+  <footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+
+          <p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            The draggable wipe comparison style is inspired by <a href="https://wild-gaussians.github.io/" target="_blank" rel="noopener noreferrer">WildGaussians</a>.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <script src="static/js/script.js"></script>
+    <script>
+      document.querySelectorAll('.bal-container-small, .bal-container-big').forEach(container => {
+        new BeforeAfter(container);
+      });
+    </script>
+  </body>
+  </html>
