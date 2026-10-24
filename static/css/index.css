@@ -223,6 +223,20 @@ body {
   margin-bottom: 0.75rem;
 }
 
+.input-image-figure {
+  margin: 0 0 1.25rem;
+}
+
+.input-image-figure .title {
+  margin-bottom: 0.5rem;
+}
+
+.input-image-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .bal-after {
   display: block;
   position: absolute;
